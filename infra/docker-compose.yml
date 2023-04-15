@@ -1,0 +1,21 @@
+version: '3.3'
+services:
+
+  db:
+    image: postgres:13.0-alpine
+    volumes:
+      - postgres:/var/lib/postgresql/data/
+    env_file:
+      - ./.env
+
+  backend:
+    image: jinglemybells/itportfolio_bot:latest
+    restart: always
+    depends_on:
+      - db
+    env_file:
+      - ./.env
+
+
+volumes:
+  postgres:
